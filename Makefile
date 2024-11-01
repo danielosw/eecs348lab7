@@ -1,6 +1,4 @@
-default: main.o
-	gcc -o main main.o
-main.o: main.cpp
-	gcc -c main.cpp
+main: main.cpp
+	g++ -std=c++11 main.cpp -o main
 clean:
-	rm *.o
+	rm -f *.o main
