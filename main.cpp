@@ -5,38 +5,40 @@ class Matrix {
 private:
   int data[SIZE][SIZE]; // 2D array for matrix data (using int for simplicity)
 public:
-  // 1. Read values from stdin into a matrix
+  // Read values from stdin into a matrix
   void readFromStdin() {
     for (int i = 0; i < SIZE; i++) {
       cout << "inputing row " << i << endl;
       for (int g = 0; g < SIZE; g++) {
-        cout << "input int: "; 
+        cout << "input int: ";
         cin >> data[i][g];
       }
     }
     cout << "Done! " << endl;
   };
-  // 2. Display a matrix
+  // Display a matrix
   void display() const {
+    // Just loop through the rows and columns and print them outs
     for (int i = 0; i < SIZE; i++) {
       for (int g = 0; g < SIZE; g++) {
-      cout << data[i][g] << " ";
+        cout << data[i][g] << " ";
       }
       cout << endl;
     }
   };
-  // 3. Add two matrices (operator overloading for +)
+  // Add two matrices (operator overloading for +)
   Matrix operator+(const Matrix &other) const {
     Matrix toReturn;
     for (int i = 0; i < SIZE; i++) {
       for (int j = 0; j < SIZE; j++) {
+	// add every number in this to its equivalint in other
         toReturn.data[i][j] = data[i][j] + other.data[i][j];
       }
     }
     return toReturn;
   };
 
-  // 4. Multiply two matrices (operator overloading for *)
+  // Multiply two matrices (operator overloading for *)
   Matrix operator*(const Matrix &other) const {
     Matrix toReturn;
     for (int i = 0; i < SIZE; i++) {
@@ -46,28 +48,24 @@ public:
         for (int k = 0; k < SIZE; k++) {
           sum += (data[i][k] * other.data[k][j]);
         }
-        // int temp = 0;
-        // for (int k = 0; k < SIZE; k++) {
-        //   temp = temp + k;
-        // }
         toReturn.data[i][j] = sum;
       }
     }
     return toReturn;
   };
 
-  // 5. Compute the sum of matrix diagonal elements
-  int sumOfDiagonals() const{
+  // Compute the sum of matrix diagonal elements
+  int sumOfDiagonals() const {
     int sum = 0;
-    int g = SIZE-1;
+    int g = SIZE - 1;
     for (int i = 0; i < SIZE; i++) {
       sum += data[i][i];
       sum += data[i][g];
-      g-=1;
+      g -= 1;
     }
     return sum;
   };
-  // 6. Swap matrix rows
+  // Swap matrix rows
   void swapRows(int row1, int row2) {
 
     for (int i = 0; i < SIZE; i++) {
